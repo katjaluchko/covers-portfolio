@@ -11,24 +11,17 @@ export interface PortfolioItem {
   author: string;
   imageUrl: string;
   genre: string;
+  description?: string;
+  gallery?: string[];
 }
 
 export interface FormData {
   name: string;
   email: string;
+  packageType: string;
   bookTitle: string;
   genre: string;
   synopsis: string;
   preferences: string;
   deadline: string;
-}
-
-// Typing for external libraries loaded via script tags if needed
-declare global {
-  interface Window {
-    UnicornStudio: {
-      isInitialized: boolean;
-      init: () => void;
-    };
-  }
 }

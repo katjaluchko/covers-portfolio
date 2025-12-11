@@ -1,5 +1,14 @@
 import React, { useEffect } from 'react';
 
+declare global {
+  interface Window {
+    UnicornStudio?: {
+      init: () => void;
+      isInitialized?: boolean;
+    };
+  }
+}
+
 const UnicornHero: React.FC = () => {
   useEffect(() => {
     // Logic to load Unicorn Studio script dynamically and safely
