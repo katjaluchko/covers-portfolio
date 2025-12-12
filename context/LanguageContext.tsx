@@ -112,13 +112,59 @@ const translations = {
     terms: {
       back: 'Назад на головну',
       title: 'Умови та положення',
-      intro: 'Майбутня угода регулює відносини між Виконавцем та приватним Замовником і не поширюється на співпрацю з юридичними особами, зокрема видавництвами. Умови співпраці з видавництвами визначаються окремим договором.',
-      s1: { t: 'Предмет договору', p: 'Виконавець зобов\'язується створити дизайн обкладинки для книги Замовника, а Замовник зобов\'язується прийняти та оплатити виконані роботи на умовах, викладених нижче.'},
-      s2: { t: 'Порядок оплати', l1: 'Замовник сплачує авансовий платіж у розмірі 50% від загальної вартості проєкту перед початком роботи.', l2: 'Решту 50% суми Замовник зобов\'язується сплатити після повного завершення робіт.', l3: 'Оплата здійснюється виключно на банківську картку Виконавця (ФОП).'},
-      s3: { t: 'Процес роботи та правки', l1: 'Безкоштовні правки: корекція тексту, шрифтів, незначні зміни кольорів.', l2: 'Платні правки: зміна позицій моделей, заміна основних об\'єктів, додавання складних елементів.'},
-      s4: { t: 'Авторські права', l1: 'Ліцензія дозволяє використання до 500 000 примірників.', l2: 'Права передаються після 100% оплати.', l3: 'Замовник зобов\'язується вказувати авторство: «Дизайн обкладинки: Катерина Лучко / KateryDesign».'},
-      s5: { t: 'Конфіденційність', p: 'Інформація є конфіденційною. Дизайн публікується в портфоліо тільки після дозволу або публікації книги.'},
-      btn: 'Зрозуміло, назад'
+      intro: 'Для ознайомлення перед початком співпраці:',
+      disclaimer: 'Майбутня угода регулює відносини між Виконавцем та приватним Замовником і не поширюється на співпрацю з юридичними особами, зокрема видавництвами. Умови співпраці з видавництвами визначаються окремим договором.',
+      btn: 'Зрозуміло, назад',
+      s1: {
+        title: '1. Предмет договору',
+        text: 'Виконавець зобов\'язується створити дизайн обкладинки для книги Замовника, а Замовник зобов\'язується прийняти та оплатити виконані роботи на умовах, викладених нижче.'
+      },
+      s2: {
+        title: '2. Порядок оплати',
+        items: [
+            'Замовник сплачує авансовий платіж у розмірі 50% від загальної вартості проекту перед початком роботи. Цей платіж є гарантією початку робіт та використовується для придбання необхідних ліцензійних ресурсів.',
+            'Решту 50% суми Замовник зобов\'язується сплатити після повного завершення робіт та отримання фінального затвердженого макету.',
+            'Оплата здійснюється виключно на банківську картку Виконавця, відкриту у рамках ФОП. Реквізити для оплати надаються окремо.'
+        ]
+      },
+      s3: {
+        title: '3. Процес роботи та правки',
+        p1: '3.1. Після затвердження початкового концепту макету, Замовник має право на безкоштовні правки, що включають:',
+        l1: [
+            'Корекцію тексту (назви, імені автора, анотації, тощо).',
+            'Зміну шрифтів, стилю чи розміщення текстових блоків.',
+            'Незначні корекції (колір волосся, очей, деталі тощо).',
+            'Зміну розміру обкладинки під конкретні цілі (інтернет або друк).'
+        ],
+        p2: '3.2. Платними правками, що оплачуються окремо за погодженням сторін, вважаються складні зміни, які суттєво впливають на загальну композицію дизайну, зокрема:',
+        l2: [
+            'Зміна позицій моделей чи основних об\'єктів.',
+            'Заміна моделей, об\'єктів або фону.',
+            'Додавання нових складних графічних елементів.'
+        ]
+      },
+      s4: {
+        title: '4. Авторські права та ліцензії',
+        l1: 'Виконавець гарантує, що всі зображення, ліцензовані у третіх осіб, надаються з ліцензією, що дозволяє використання у тиражі до 500 000 примірників (цифрових або друкованих). Для необхідності розширеної ліцензії (понад 500 000 примірників) Замовник зобов\'язується повідомити про це заздалегідь, така ліцензія оплачується додатково.',
+        l2: 'Виключні майнові права на готовий дизайн обкладинки передаються Замовнику після отримання Виконавцем повної (100%) оплати.',
+        l3_intro: 'Замовник зобов\'язується вказувати авторство Виконавця у всіх публікаціях та репродукціях роботи, у тому числі:',
+        l3_list: [
+            'Фізичні копії: «Дизайн обкладинки: Катерина Лучко / KateryDesign»',
+            'Цифрові копії (електронні книги, аудіокниги): «Дизайн обкладинки: Катерина Лучко / KateryDesign»'
+        ],
+        l4: 'Виконавець (KateryDesign) зберігає за собою право некомерційного використання фінального дизайну обкладинки, назви та імені автора книги для розміщення в портфоліо, участі у конкурсах, а також в маркетингових та рекламних цілях (своїх навичок).'
+      },
+      s5: {
+        title: '5. Конфіденційність',
+        items: [
+            'Вся інформація, надана Замовником, є конфіденційною і використовується Виконавцем виключно для виконання умов цього Договору.',
+            'Виконавець має право розмістити остаточний дизайн у своєму публічному портфоліо лише після публічного розкриття дизайну Замовником або після отримання письмового дозволу від Замовника.'
+        ]
+      },
+      s6: {
+        title: '6. Відповідальність',
+        text: 'Виконавець не несе відповідальності за схожість дизайну обкладинки з іншими існуючими роботами, якщо така схожість обумовлена загальними тенденціями, темами або вимогами жанру.'
+      }
     },
     brief: {
       back: 'Назад до питань',
@@ -245,13 +291,59 @@ const translations = {
     terms: {
       back: 'Back to Home',
       title: 'Terms & Conditions',
-      intro: 'This agreement regulates the relationship between the Designer and the private Client. Cooperation with publishing houses is determined by a separate contract.',
-      s1: { t: 'Subject of Agreement', p: 'The Designer agrees to create a book cover design for the Client, and the Client agrees to accept and pay for the work under the conditions below.'},
-      s2: { t: 'Payment Terms', l1: 'The Client pays a 50% advance payment of the total project cost before work begins.', l2: 'The Client agrees to pay the remaining 50% after full completion of work.', l3: 'Payment is made exclusively to the Designer\'s bank account.'},
-      s3: { t: 'Workflow & Edits', l1: 'Free edits: text correction, fonts, minor color changes.', l2: 'Paid edits: changing model positions, replacing main objects, adding complex elements.'},
-      s4: { t: 'Copyrights', l1: 'The license allows usage up to 500,000 copies.', l2: 'Rights are transferred after 100% payment.', l3: 'Client agrees to credit: "Cover Design: Kateryna Luchko / KateryDesign".'},
-      s5: { t: 'Confidentiality', p: 'Information is confidential. The design is published in the portfolio only after permission or book publication.'},
-      btn: 'Understood, Go Back'
+      intro: 'For review before starting cooperation:',
+      disclaimer: 'The future agreement regulates the relationship between the Contractor and a private Client and does not apply to cooperation with legal entities, particularly publishing houses. The terms of cooperation with publishing houses are determined by a separate agreement.',
+      btn: 'Understood, Go Back',
+      s1: {
+        title: '1. Subject of Agreement',
+        text: 'The Designer agrees to create a book cover design for the Client, and the Client agrees to accept and pay for the work under the conditions set forth below.'
+      },
+      s2: {
+        title: '2. Payment Procedure',
+        items: [
+            'The Client pays a 50% advance payment of the total project cost before work begins. This payment serves as a guarantee for starting work and is used to purchase necessary licensed resources.',
+            'The Client agrees to pay the remaining 50% after full completion of work and receipt of the final approved layout.',
+            'Payment is made exclusively to the Designer\'s bank account opened under the sole proprietorship (FOP). Payment details are provided separately.'
+        ]
+      },
+      s3: {
+        title: '3. Workflow and Edits',
+        p1: '3.1. After approving the initial layout concept, the Client is entitled to free edits, which include:',
+        l1: [
+            'Text correction (title, author name, synopsis, etc.).',
+            'Changing fonts, style, or placement of text blocks.',
+            'Minor corrections (hair color, eye color, small details, etc.).',
+            'Changing cover size for specific purposes (web or print).'
+        ],
+        p2: '3.2. Paid edits, which are paid separately by agreement of the parties, are considered complex changes that significantly affect the overall composition of the design, in particular:',
+        l2: [
+            'Changing the positions of models or main objects.',
+            'Replacing models, objects, or background.',
+            'Adding new complex graphic elements.'
+        ]
+      },
+      s4: {
+        title: '4. Copyrights and Licenses',
+        l1: 'The Designer guarantees that all images licensed from third parties are provided with a license allowing usage up to 500,000 copies (digital or print). If an extended license is needed (over 500,000 copies), the Client agrees to notify in advance; such license is paid separately.',
+        l2: 'Exclusive property rights to the finished cover design are transferred to the Client after the Designer receives full (100%) payment.',
+        l3_intro: 'The Client agrees to credit the Designer in all publications and reproductions of the work, including:',
+        l3_list: [
+            'Physical copies: "Cover Design: Kateryna Luchko / KateryDesign"',
+            'Digital copies (e-books, audiobooks): "Cover Design: Kateryna Luchko / KateryDesign"'
+        ],
+        l4: 'The Designer (KateryDesign) retains the right to non-commercial use of the final cover design, book title, and author\'s name for placement in portfolio, participation in contests, and for marketing and advertising purposes (of their skills).'
+      },
+      s5: {
+        title: '5. Confidentiality',
+        items: [
+            'All information provided by the Client is confidential and used by the Designer exclusively to fulfill the terms of this Agreement.',
+            'The Designer has the right to publish the final design in their public portfolio only after the public disclosure of the design by the Client or after receiving written permission from the Client.'
+        ]
+      },
+      s6: {
+        title: '6. Liability',
+        text: 'The Designer is not liable for the similarity of the cover design to other existing works if such similarity is due to general trends, themes, or genre requirements.'
+      }
     },
     brief: {
       back: 'Back to FAQ',

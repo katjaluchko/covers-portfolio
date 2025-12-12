@@ -34,66 +34,101 @@ const Terms: React.FC<TermsProps> = ({ onBack }) => {
               <div className="p-3 bg-purple-500/10 rounded-full text-purple-400">
                 <FileText className="w-8 h-8" />
               </div>
-              <h1 className="text-3xl md:text-4xl font-serif font-bold text-white">{t.terms.title}</h1>
+              <div className="flex flex-col">
+                  <h1 className="text-3xl md:text-4xl font-serif font-bold text-white">{t.terms.title}</h1>
+              </div>
             </div>
 
-            <div className="space-y-8 text-gray-300 leading-relaxed text-sm md:text-base">
+            <div className="p-4 mb-8 bg-white/5 border-l-4 border-purple-500 rounded-r-sm italic text-gray-400 space-y-3">
+                <p className="font-bold text-purple-300">{t.terms.intro}</p>
+                <p>{t.terms.disclaimer}</p>
+            </div>
+
+            <div className="space-y-10 text-gray-300 leading-relaxed text-sm md:text-base">
               
-              <div className="p-4 bg-white/5 border-l-4 border-purple-500 rounded-r-sm italic text-gray-400">
-                <p>{t.terms.intro}</p>
+              {/* Section 1 */}
+              <div>
+                <h3 className="text-xl font-bold text-purple-400 mb-4">
+                  {t.terms.s1.title}
+                </h3>
+                <p>{t.terms.s1.text}</p>
               </div>
 
+              {/* Section 2 */}
               <div>
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-purple-500">1.</span> {t.terms.s1.t}
+                <h3 className="text-xl font-bold text-purple-400 mb-4">
+                  {t.terms.s2.title}
                 </h3>
-                <p>{t.terms.s1.p}</p>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-purple-500">2.</span> {t.terms.s2.t}
-                </h3>
-                <ul className="space-y-3 pl-4">
-                  <li><strong className="text-gray-200">2.1.</strong> {t.terms.s2.l1}</li>
-                  <li><strong className="text-gray-200">2.2.</strong> {t.terms.s2.l2}</li>
-                  <li><strong className="text-gray-200">2.3.</strong> {t.terms.s2.l3}</li>
+                <ul className="space-y-3">
+                    {t.terms.s2.items.map((item: string, idx: number) => (
+                        <li key={idx}><strong className="text-gray-200">2.{idx + 1}.</strong> {item}</li>
+                    ))}
                 </ul>
               </div>
 
+              {/* Section 3 */}
               <div>
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-purple-500">3.</span> {t.terms.s3.t}
+                <h3 className="text-xl font-bold text-purple-400 mb-4">
+                  {t.terms.s3.title}
                 </h3>
-                <div className="space-y-4">
-                  <div>
-                    <p className="mb-2"><strong className="text-gray-200">3.1.</strong> {t.terms.s3.l1}</p>
-                  </div>
-                  <div>
-                    <p className="mb-2"><strong className="text-gray-200">3.2.</strong> {t.terms.s3.l2}</p>
-                  </div>
+                <div className="space-y-6">
+                    <div>
+                        <p className="mb-2 font-bold text-gray-200">{t.terms.s3.p1}</p>
+                        <ul className="list-disc pl-6 space-y-1 text-gray-400">
+                            {t.terms.s3.l1.map((item: string, idx: number) => (
+                                <li key={idx}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <p className="mb-2 font-bold text-gray-200">{t.terms.s3.p2}</p>
+                        <ul className="list-disc pl-6 space-y-1 text-gray-400">
+                            {t.terms.s3.l2.map((item: string, idx: number) => (
+                                <li key={idx}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
               </div>
 
+              {/* Section 4 */}
               <div>
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-purple-500">4.</span> {t.terms.s4.t}
+                <h3 className="text-xl font-bold text-purple-400 mb-4">
+                   {t.terms.s4.title}
                 </h3>
-                <ul className="space-y-3 pl-4">
+                <ul className="space-y-4">
                   <li><strong className="text-gray-200">4.1.</strong> {t.terms.s4.l1}</li>
                   <li><strong className="text-gray-200">4.2.</strong> {t.terms.s4.l2}</li>
-                  <li><strong className="text-gray-200">4.3.</strong> {t.terms.s4.l3}
+                  <li>
+                      <strong className="text-gray-200">4.3.</strong> {t.terms.s4.l3_intro}
+                      <ul className="list-disc pl-6 mt-2 space-y-1 text-gray-400">
+                        {t.terms.s4.l3_list.map((item: string, idx: number) => (
+                            <li key={idx}>{item}</li>
+                        ))}
+                      </ul>
                   </li>
+                  <li><strong className="text-gray-200">4.4.</strong> {t.terms.s4.l4}</li>
                 </ul>
               </div>
 
+              {/* Section 5 */}
               <div>
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <span className="text-purple-500">5.</span> {t.terms.s5.t}
+                <h3 className="text-xl font-bold text-purple-400 mb-4">
+                  {t.terms.s5.title}
                 </h3>
-                <ul className="space-y-3 pl-4">
-                  <li><strong className="text-gray-200">5.1.</strong> {t.terms.s5.p}</li>
+                <ul className="space-y-3">
+                   {t.terms.s5.items.map((item: string, idx: number) => (
+                        <li key={idx}><strong className="text-gray-200">5.{idx + 1}.</strong> {item}</li>
+                    ))}
                 </ul>
+              </div>
+
+              {/* Section 6 */}
+              <div>
+                <h3 className="text-xl font-bold text-purple-400 mb-4">
+                  {t.terms.s6.title}
+                </h3>
+                <p><strong className="text-gray-200">6.1.</strong> {t.terms.s6.text}</p>
               </div>
 
             </div>
