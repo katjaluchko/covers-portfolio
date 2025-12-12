@@ -34,10 +34,10 @@ const Process: React.FC<ProcessProps> = ({ onOpenTerms }) => {
 
             <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {t.process.steps.map((step: any, idx: number) => (
-                    <div key={idx} className="bg-white/5 p-8 backdrop-blur-sm border border-white/5 hover:border-purple-500/50 transition-all duration-300">
-                        <span className="text-6xl font-serif font-bold text-white/10 mb-4 block">{step.num}</span>
+                    <div key={idx} className="bg-purple-500/10 p-8 backdrop-blur-sm border border-purple-500/20 hover:bg-purple-500/20 hover:border-purple-500/40 transition-all duration-300 shadow-lg shadow-purple-900/10">
+                        <span className="text-6xl font-serif font-bold text-purple-500/20 mb-4 block">{step.num}</span>
                         <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                        <p className="text-purple-100/70 text-sm leading-relaxed">{step.desc}</p>
                     </div>
                 ))}
             </div>

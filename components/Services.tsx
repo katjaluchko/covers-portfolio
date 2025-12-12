@@ -1,41 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BookOpen, Layers, Zap } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-declare global {
-  interface Window {
-    UnicornStudio?: {
-      init: () => void;
-      isInitialized?: boolean;
-    };
-  }
-}
-
 const Services: React.FC = () => {
   const { t } = useLanguage();
-
-  useEffect(() => {
-    const scriptId = 'unicorn-studio-script';
-    
-    // Check if script already exists (it might be loaded by Hero component)
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script');
-      script.id = scriptId;
-      script.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js";
-      script.onload = () => {
-        if (window.UnicornStudio && !window.UnicornStudio.isInitialized) {
-          window.UnicornStudio.init();
-          window.UnicornStudio.isInitialized = true;
-        }
-      };
-      document.body.appendChild(script);
-    } else {
-      // Re-init to catch new data-us-project elements
-      if (window.UnicornStudio && window.UnicornStudio.init) {
-        window.UnicornStudio.init();
-      }
-    }
-  }, []);
 
   const services = [
     {
@@ -57,16 +25,9 @@ const Services: React.FC = () => {
 
   return (
     <section id="services" className="py-24 relative overflow-hidden bg-dark-800 border-t border-white/5">
-      {/* Unicorn Studio Background */}
-      <div 
-        className="absolute inset-0 z-0"
-        data-us-project="2qKYrGcuKo2eJpK07yrp" 
-        style={{ width: '100%', height: '100%' }}
-      ></div>
-
-      {/* Dark Overlay for text readability */}
-      <div className="absolute inset-0 bg-dark-900/80 z-0 pointer-events-none"></div>
-
+      {/* Decorative background glow */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/50 to-transparent pointer-events-none"></div>
+      
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">{t.services.title}</h2>
@@ -75,7 +36,7 @@ const Services: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {services.map((service, index) => (
-            <div key={index} className="bg-dark-700/80 backdrop-blur-sm p-8 md:p-12 rounded-sm hover:bg-dark-700/90 transition-colors border border-white/5 hover:border-purple-500/30 group flex flex-col relative overflow-hidden">
+            <div key={index} className="bg-dark-700/80 backdrop-blur-sm p-8 md:p-12 rounded-sm hover:bg-dark-700/90 transition-colors border border-white/5 hover:border-purple-500/30 group flex flex-col relative overflow-hidden shadow-xl">
               <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/5 rounded-full blur-3xl -mr-16 -mt-16 transition-all group-hover:bg-purple-500/10"></div>
               
               <div className="mb-6 p-4 bg-dark-900 rounded-full w-fit group-hover:scale-110 transition-transform duration-300 border border-white/10 relative z-10">
