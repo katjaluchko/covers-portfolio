@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Instagram, Mail } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -47,9 +47,9 @@ const Footer: React.FC = () => {
           {/* Logo Image */}
           <a href="#" className="inline-block mb-4 opacity-50 hover:opacity-100 transition-opacity duration-300">
             <img 
-                src="https://media.discordapp.net/attachments/1448617451918069915/1448625723928613027/c5ff6cff3e9568a4.png?ex=693bf156&is=693a9fd6&hm=d7fdad95ec95f133b3cf051001a952b37f7684d4959d4993262649a93d84e278&=&format=webp&quality=lossless&width=1110&height=920" 
+                src="https://media.discordapp.net/attachments/1448617451918069915/1448625723928613027/c5ff6cff3e9568a4.png?ex=693d42d6&is=693bf156&hm=05a970834c3944c914bf0b4d19a96258238cc7996f9dd1ac7a6428b0de90a0b8&=&format=webp&quality=lossless&width=1110&height=920" 
                 alt="Logo" 
-                className="h-10 w-auto object-contain"
+                className="h-24 w-auto object-contain"
             />
           </a>
           <p className="text-gray-500 text-sm">© {new Date().getFullYear()} {t.footer.rights}</p>

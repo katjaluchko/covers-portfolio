@@ -1,19 +1,49 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+
+declare global {
+  interface Window {
+    UnicornStudio?: {
+      init: () => void;
+      isInitialized?: boolean;
+    };
+  }
+}
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
 
+  useEffect(() => {
+    const scriptId = 'unicorn-studio-script';
+    
+    // Check if script already exists to avoid duplication
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js";
+      script.onload = () => {
+        // Init if available immediately after load
+        if (window.UnicornStudio && !window.UnicornStudio.isInitialized) {
+          window.UnicornStudio.init();
+          window.UnicornStudio.isInitialized = true;
+        }
+      };
+      document.body.appendChild(script);
+    } else {
+      // If script exists, re-initialize if needed (for navigation/re-mounts)
+      if (window.UnicornStudio && window.UnicornStudio.init) {
+        window.UnicornStudio.init();
+      }
+    }
+  }, []);
+
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Static Background Image */}
+      {/* Unicorn Studio Background */}
       <div 
-        className="absolute inset-0 z-0 opacity-40"
-        style={{ 
-            backgroundImage: 'url("https://media.discordapp.net/attachments/1448617451918069915/1448781456167010428/0_1_22.jpg?ex=693c8260&is=693b30e0&hm=83c54b14cbcd7ea9bc020597042c7c99a2f4c98ac4fc9a7fe659f49e0a42e0e2&=&format=webp&width=748&height=930")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-        }}
+        className="absolute inset-0 z-0"
+        data-us-project="CGLqcVQJllcKuhjSMchl" 
+        style={{ width: '100%', height: '100%' }}
       ></div>
       
       {/* Gradient Overlay for better text readability */}

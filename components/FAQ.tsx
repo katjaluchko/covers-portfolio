@@ -31,7 +31,6 @@ const FAQ: React.FC<FAQProps> = ({ onOpenBrief }) => {
           {t.faq.items.map((faq: any, index: number) => (
             <div 
               key={index}
-              id={index === 3 ? "faq-brief-trigger" : undefined}
               className={`bg-dark-800 border ${openIndex === index ? 'border-purple-500/50' : 'border-white/5'} rounded-sm overflow-hidden transition-all duration-300`}
             >
               <button
@@ -51,22 +50,21 @@ const FAQ: React.FC<FAQProps> = ({ onOpenBrief }) => {
               >
                 <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-dashed border-white/10 mt-2">
                   {faq.a}
-                  {/* Button specifically for the 4th question (index 3) */}
-                  {index === 3 && (
-                    <div className="mt-6">
-                        <button 
-                            onClick={onOpenBrief}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-purple-500/10 hover:bg-purple-500 hover:text-white text-purple-400 border border-purple-500/30 rounded-sm transition-all duration-300 uppercase tracking-widest text-xs font-bold"
-                        >
-                            <FileText className="w-4 h-4" />
-                            <span>{t.faq.btn}</span>
-                        </button>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Button moved outside of the FAQ items */}
+        <div className="mt-12 flex justify-center" id="faq-brief-trigger">
+            <button 
+                onClick={onOpenBrief}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-purple-500/10 hover:bg-purple-500 hover:text-white text-purple-400 border border-purple-500/30 rounded-sm transition-all duration-300 uppercase tracking-widest text-sm font-bold shadow-[0_0_15px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.4)]"
+            >
+                <FileText className="w-5 h-5" />
+                <span>{t.faq.btn}</span>
+            </button>
         </div>
       </div>
     </section>
