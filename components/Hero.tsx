@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
       {/* Unicorn Studio Background */}
       <div 
         className="absolute inset-0 z-0"
-        data-us-project="CGLqcVQJllcKuhjSMchl" 
+        data-us-project="Tm75p0huBifSzoqGh9T9" 
         style={{ width: '100%', height: '100%' }}
       ></div>
       
