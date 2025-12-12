@@ -12,7 +12,8 @@ const Testimonials: React.FC = () => {
         role: language === 'uk' ? "Замовник-автор з Upwork" : "Author client from Upwork",
         text: language === 'uk' 
             ? "Виняткова майстерність — втілення моєї візії. Катерина створила обкладинку для мого епічного фентезі-роману «UNWRITTEN: The Awakening» і просто вразила мене. З самого першого концепту вона зрозуміла похмурий тон і космічний масштаб, яких я прагнув. Кінцева обкладинка просто захоплює дух. Катерина - професіонал, комунікабельна і справді талановита."
-            : "Exceptional craftsmanship — the embodiment of my vision. Kateryna created the cover for my epic fantasy novel 'UNWRITTEN: The Awakening' and just blew me away. From the very first concept, she understood the dark tone and cosmic scale I was aiming for. The final cover is simply breathtaking. Kateryna is a professional, communicative, and truly talented."
+            : "Exceptional craftsmanship — the embodiment of my vision. Kateryna created the cover for my epic fantasy novel 'UNWRITTEN: The Awakening' and just blew me away. From the very first concept, she understood the dark tone and cosmic scale I was aiming for. The final cover is simply breathtaking. Kateryna is a professional, communicative, and truly talented.",
+        coverImage: "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693beb30&is=693a99b0&hm=561b393d07148ecb5e3b4265211ff0e61c3710d03c1fb85d077d04cf53a7a13b&=&format=webp&width=615&height=930"
     },
     {
         id: 2,
@@ -44,7 +45,8 @@ const Testimonials: React.FC = () => {
         role: language === 'uk' ? "Видавець Amazon" : "Amazon Publisher",
         text: language === 'uk'
             ? "Працювати з Катериною було дуже приємно, вона справді зробила чудову роботу! Вона швидко відповідала на повідомлення і професійно відповідала на всі питання. Обкладинка, яку вона створила, вийшла просто чудовою."
-            : "Working with Kateryna was very pleasant, she really did a great job! She responded quickly to messages and answered all questions professionally. The cover she created turned out just great."
+            : "Working with Kateryna was very pleasant, she really did a great job! She responded quickly to messages and answered all questions professionally. The cover she created turned out just great.",
+        coverImage: "https://framerusercontent.com/images/7F9urZnxqCiMy8O9ZQ2eiAxidU.jpg?scale-down-to=1024&width=2194&height=3292"
     }
   ];
 
@@ -76,14 +78,27 @@ const Testimonials: React.FC = () => {
                 "{review.text}"
               </p>
               
-              <div className="flex items-center gap-4 border-t border-white/5 pt-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-800 flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/20">
-                    {review.name.charAt(0)}
+              <div className="flex items-center justify-between border-t border-white/5 pt-4 gap-4">
+                <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-800 flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/20 shrink-0">
+                        {review.name.charAt(0)}
+                    </div>
+                    <div>
+                    <h4 className="text-white font-bold font-serif text-sm">{review.name}</h4>
+                    <p className="text-purple-400 text-xs uppercase tracking-wider">{review.role}</p>
+                    </div>
                 </div>
-                <div>
-                  <h4 className="text-white font-bold font-serif text-sm">{review.name}</h4>
-                  <p className="text-purple-400 text-xs uppercase tracking-wider">{review.role}</p>
-                </div>
+
+                {/* Optional Linked Book Cover */}
+                {review.coverImage && (
+                    <div className="relative group/cover shrink-0">
+                        <img 
+                            src={review.coverImage} 
+                            alt={`${review.name}'s Book`} 
+                            className="w-12 h-auto rounded-sm border border-white/10 shadow-sm transition-transform duration-300 group-hover/cover:scale-150 group-hover/cover:z-50 relative origin-bottom-right"
+                        />
+                    </div>
+                )}
               </div>
             </div>
           ))}
