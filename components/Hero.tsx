@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-20 text-center px-4 max-w-5xl mx-auto mt-16">
-        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-2xl flex flex-col items-center gap-2 md:gap-4">
+        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-8 tracking-tight leading-tight drop-shadow-[0_10px_10px_rgba(0,0,0,1)] flex flex-col items-center gap-2 md:gap-4">
           
           {/* Line 1 */}
           <div className="flex flex-wrap justify-center gap-x-3 md:gap-x-5">
@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
 
         </h1>
         
-        <p className="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+        <p className="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed drop-shadow-[0_5px_5px_rgba(0,0,0,1)]">
           {t.hero.subtitle}
         </p>
       </div>

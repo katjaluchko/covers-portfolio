@@ -70,35 +70,35 @@ const Portfolio: React.FC = () => {
         title: "День, коли втрачено розум", 
         author: "Ксав'єр Кастільо", 
         genre: language === 'uk' ? "Триллер" : "Thriller", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734370758809/2025-12-04_180848.png?ex=693be9e5&is=693a9865&hm=0c4257eead4ff65ce91bd2eda530de2f9745760f487738d8fe66f4db1cb43be1&=&format=webp&quality=lossless&width=529&height=800"
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734370758809/2025-12-04_180848.png?ex=693d3b65&is=693be9e5&hm=8425445da2fcf1b9ba98615a9e251c6c46de27a07358aa09700d92f29c3ed2cd&=&format=webp&quality=lossless&width=529&height=800"
     },
     { 
         id: 8, 
         title: "Court of Embers", 
         author: "Lauren Lee King", 
         genre: language === 'uk' ? "Роментезі" : "Romantasy", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734811287552/2025-12-04_182927.png?ex=693be9e5&is=693a9865&hm=02047256521f3e7ab4c8f2e808f656a0746ddbe1ac4f442debcb7706ef722ad0&=&format=webp&quality=lossless&width=504&height=800"
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734811287552/2025-12-04_182927.png?ex=693d3b65&is=693be9e5&hm=08b2b6e82e9d8add22f299aefa65ab2b6d416905eafedf5cdf76f28efd75ad69&=&format=webp&quality=lossless&width=504&height=800"
     },
     { 
         id: 9, 
         title: "Я стежу за тобою", 
         author: "Тереза Дрісколл", 
         genre: language === 'uk' ? "Триллер" : "Thriller", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617735230849075/2025-12-04_180737.png?ex=693be9e6&is=693a9866&hm=f570edf52231388a94e6a1c750377775edb2f76394b82fac1e69bddf3f9854c5&=&format=webp&quality=lossless&width=525&height=800"
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617735230849075/2025-12-04_180737.png?ex=693d3b66&is=693be9e6&hm=65820405ccf740b9a3c071a28d6c07b0025e9a88f56c4d45e4f4455e59256a9b&=&format=webp&quality=lossless&width=525&height=800"
     },
     { 
         id: 10, 
         title: "Острів ГУР", 
         author: "Максим Бутченко", 
         genre: "Нон-фікшн", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448618123518541824/2025-12-04_181326.png?ex=693bea42&is=693a98c2&hm=fce547c723f4e580f23289cc9b45cf13afdebe652cdb2ec6b6afa9a727f5928b&=&format=webp&quality=lossless&width=589&height=930"
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448618123518541824/2025-12-04_181326.png?ex=693d3bc2&is=693bea42&hm=2328fcbc4b46440d843ef711f699bbef19d91abff890b27f94cb31e2a241a7e2&=&format=webp&quality=lossless&width=278&height=438"
     },
     { 
         id: 11, 
         title: "Unwritten", 
         author: "Adger. R. Matthews 2", 
         genre: language === 'uk' ? "Грімдарк Фентезі" : "Grimdark Fantasy", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693beb30&is=693a99b0&hm=561b393d07148ecb5e3b4265211ff0e61c3710d03c1fb85d077d04cf53a7a13b&=&format=webp&width=615&height=930",
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693d3cb0&is=693beb30&hm=1f124ea964a797225ade2c48f53ee15a237fc4331b24b84dd4eb7636eb1bcdda&=&format=webp&width=615&height=930",
         gallery: [
             "https://media.discordapp.net/attachments/1448617451918069915/1448748005879709879/-1.jpg?ex=693c6339&is=693b11b9&hm=ace006089c2d5b3f383e133f6ec1391b8760d8ebecddafd14f3fc9238671c387&=&format=webp&width=1110&height=866",
             "https://media.discordapp.net/attachments/1448617451918069915/1448747998501933066/512.jpg?ex=693c6337&is=693b11b7&hm=f26ebb4628e21108432a89d1077164dc116a90e94b809c8f677673a3ff9714de&=&format=webp&width=1416&height=800",
