@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { PortfolioItem } from '../types';
 
 const Portfolio: React.FC = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const { language, t } = useLanguage();
 
   const portfolioItems: PortfolioItem[] = [
@@ -106,43 +104,6 @@ const Portfolio: React.FC = () => {
     },
   ];
 
-  const openModal = (index: number) => setSelectedIndex(index);
-  const closeModal = () => setSelectedIndex(null);
-
-  const prevProject = useCallback((e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    setSelectedIndex((prev) => (prev !== null ? (prev === 0 ? portfolioItems.length - 1 : prev - 1) : null));
-  }, [portfolioItems.length]);
-
-  const nextProject = useCallback((e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    setSelectedIndex((prev) => (prev !== null ? (prev === portfolioItems.length - 1 ? 0 : prev + 1) : null));
-  }, [portfolioItems.length]);
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (selectedIndex === null) return;
-      if (e.key === 'ArrowLeft') prevProject();
-      if (e.key === 'ArrowRight') nextProject();
-      if (e.key === 'Escape') closeModal();
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedIndex, prevProject, nextProject]);
-
-  // Lock body scroll
-  useEffect(() => {
-    if (selectedIndex !== null) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [selectedIndex]);
-
-  const selectedItem = selectedIndex !== null ? portfolioItems[selectedIndex] : null;
-
   return (
     <section id="portfolio" className="py-24 bg-black relative">
       <div className="container mx-auto px-6">
@@ -153,11 +114,10 @@ const Portfolio: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-          {portfolioItems.map((item, index) => (
+          {portfolioItems.map((item) => (
             <div 
               key={item.id} 
-              className="group cursor-pointer relative aspect-[2/3] overflow-hidden rounded-sm"
-              onClick={() => openModal(index)}
+              className="group relative aspect-[2/3] overflow-hidden rounded-sm cursor-default"
             >
               <img 
                 src={item.imageUrl} 
@@ -168,109 +128,11 @@ const Portfolio: React.FC = () => {
                 <span className="text-purple-400 text-xs font-bold uppercase tracking-widest mb-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">{item.genre}</span>
                 <h3 className="text-white font-serif text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">{item.title}</h3>
                 <p className="text-gray-300 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">{item.author}</p>
-                <div className="mt-4 flex items-center gap-2 text-purple-400 text-xs uppercase font-bold tracking-widest translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200">
-                  <span>{t.portfolio.details}</span>
-                  <ZoomIn className="w-4 h-4" />
-                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-
-      {/* Fullscreen Modal with Scrolling Content */}
-      {selectedItem && (
-        <div 
-            className="fixed inset-0 z-[60] bg-dark-900 overflow-y-auto animate-in fade-in duration-300" 
-            onClick={closeModal}
-        >
-          {/* Controls Container */}
-          <div className="fixed top-0 left-0 w-full p-4 md:p-8 flex justify-between items-center z-[70] pointer-events-none">
-             {/* Empty div to balance close button if needed, or back arrow */}
-             <div className="pointer-events-auto">
-                {/* Could put a logo or 'back' text here */}
-             </div>
-             <button 
-                className="text-gray-400 hover:text-white transition-colors p-2 bg-black/50 backdrop-blur-md rounded-full pointer-events-auto"
-                onClick={(e) => { e.stopPropagation(); closeModal(); }}
-             >
-                <X className="w-8 h-8" />
-            </button>
-          </div>
-
-          {/* Navigation Buttons (Fixed Center) */}
-          <button 
-            className="fixed left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white p-2 transition-colors z-[70] hidden md:block"
-            onClick={prevProject}
-          >
-            <ChevronLeft className="w-16 h-16" />
-          </button>
-
-          <button 
-            className="fixed right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/30 hover:text-white p-2 transition-colors z-[70] hidden md:block"
-            onClick={nextProject}
-          >
-            <ChevronRight className="w-16 h-16" />
-          </button>
-
-          {/* Main Content Container */}
-          <div 
-            className="relative min-h-screen flex flex-col items-center pt-24 pb-24 px-6 pointer-events-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="max-w-4xl w-full">
-                {/* Header Info */}
-                <div className="text-center mb-12">
-                     <span className="text-purple-500 font-bold uppercase tracking-widest text-sm mb-2 block">{selectedItem.genre}</span>
-                     <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">{selectedItem.title}</h2>
-                     <p className="text-xl text-gray-300 font-serif italic mb-6">{selectedItem.author}</p>
-                </div>
-
-                {/* Main Image */}
-                <div className="mb-12 shadow-2xl shadow-purple-900/10 rounded-sm overflow-hidden bg-black">
-                     <img 
-                        src={selectedItem.imageUrl} 
-                        alt={selectedItem.title} 
-                        className="w-full h-auto object-contain max-h-[80vh]"
-                     />
-                </div>
-
-                {/* Gallery Grid */}
-                {selectedItem.gallery && selectedItem.gallery.length > 0 && (
-                    <div className="grid grid-cols-1 gap-8 md:gap-12 mt-16">
-                        {selectedItem.gallery.map((img, idx) => (
-                            <div key={idx} className="relative group rounded-sm overflow-hidden shadow-lg shadow-black/50">
-                                <img 
-                                    src={img} 
-                                    alt={`${selectedItem.title} detail ${idx + 1}`}
-                                    className="w-full h-auto object-cover"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                )}
-                
-                {/* Mobile Navigation Buttons (Bottom) */}
-                <div className="flex md:hidden justify-between mt-12 pt-8 border-t border-white/10">
-                    <button 
-                        className="flex items-center gap-2 text-gray-400 hover:text-white uppercase text-xs font-bold tracking-widest"
-                        onClick={(e) => { e.stopPropagation(); prevProject(e); }}
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                        Prev
-                    </button>
-                    <button 
-                        className="flex items-center gap-2 text-gray-400 hover:text-white uppercase text-xs font-bold tracking-widest"
-                        onClick={(e) => { e.stopPropagation(); nextProject(e); }}
-                    >
-                        Next
-                        <ChevronRight className="w-5 h-5" />
-                    </button>
-                </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

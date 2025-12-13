@@ -44,7 +44,7 @@ const translations = {
       print: {
         title: 'Hardback/paperback обкладинка',
         desc: '(ціна середня, залежить від складності)',
-        note: 'Форзац, зрізи обговорюються окремо, ціна вираховується окремо від вартості цілої обкладинки.',
+        note: 'Форзаци, зрізи, ілюстрації обговорюються окремо, ціна вираховується окремо.',
         features: [
           "Повний пакет E-Book",
           "Дизайн корінця та задньої обкладинки",
@@ -231,7 +231,7 @@ const translations = {
       print: {
         title: 'Hardback/Paperback',
         desc: '(average price, depends on complexity)',
-        note: 'Endpapers and sprayed edges are discussed separately; the price is calculated separately from the total cover cost.',
+        note: 'Endpapers, sprayed edges, and illustrations are discussed separately; the price is calculated separately.',
         features: [
           "Full E-Book package",
           "Spine and back cover design",
