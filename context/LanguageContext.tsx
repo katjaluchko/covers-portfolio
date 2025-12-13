@@ -34,10 +34,11 @@ const translations = {
         title: 'E-Book обкладинка',
         desc: '(ціна середня, залежить від складності)',
         features: [
-          "Дизайн обкладинки електронної книги",
-          "1 Мокап",
-          "Усі вихідні файли",
-          "оформлення контенту для соц-мереж"
+          "Дизайн електронної обкладинки (перед)",
+          "Форматування під стандарти Amazon/Kindle (за необхідності)",
+          "Висока роздільна здатність",
+          "3D мокап для промо",
+          "Вихідні файли"
         ]
       },
       print: {
@@ -45,10 +46,10 @@ const translations = {
         desc: '(ціна середня, залежить від складності)',
         note: 'Форзац, зрізи обговорюються окремо, ціна вираховується окремо від вартості цілої обкладинки.',
         features: [
-          "Повний E-BOOK Пакет",
-          "Дизайн обкладинки в м'якій чи твердій обкладинці",
-          "Усі вихідні файли",
-          "оформлення контенту для соц-мереж"
+          "Повний пакет E-Book",
+          "Дизайн корінця та задньої обкладинки",
+          "Підготовка до друку",
+          "Адаптація під конкретну типографію"
         ]
       }
     },
@@ -175,6 +176,13 @@ const translations = {
       copy: 'Копіювати все',
       copied: 'Скопійовано',
       transfer: 'Перенести в анкету',
+      ai_btn: 'Ai-помічник',
+      ai_modal_title: 'Ai Генератор Ідей',
+      ai_generating: 'Генерую ідеї...',
+      ai_insert: 'Вставити в ТЗ',
+      ai_close: 'Зачинити',
+      ai_placeholder: 'Тут з\'являться ідеї для дизайну на основі вашого сюжету...',
+      ai_error: 'Необхідно заповнити поле "Анотація" для генерації ідей.',
       fields: {
         name: "Ім'я Автора",
         genre: "Жанр",
@@ -213,10 +221,11 @@ const translations = {
         title: 'E-Book Cover',
         desc: '(average price, depends on complexity)',
         features: [
-          "E-book cover design",
-          "1 Mockup",
-          "All source files",
-          "Social media content design"
+          "E-book cover design (front)",
+          "Amazon/Kindle formatting (if needed)",
+          "High resolution",
+          "3D mockup for promo",
+          "Source files"
         ]
       },
       print: {
@@ -224,10 +233,10 @@ const translations = {
         desc: '(average price, depends on complexity)',
         note: 'Endpapers and sprayed edges are discussed separately; the price is calculated separately from the total cover cost.',
         features: [
-          "Full E-BOOK Package",
-          "Paperback or Hardback cover design",
-          "All source files",
-          "Social media content design"
+          "Full E-Book package",
+          "Spine and back cover design",
+          "Print preparation",
+          "Adaptation for specific printing house requirements"
         ]
       }
     },
@@ -354,6 +363,13 @@ const translations = {
       copy: 'Copy All',
       copied: 'Copied',
       transfer: 'Transfer to Form',
+      ai_btn: 'Ai Assistant',
+      ai_modal_title: 'Ai Idea Generator',
+      ai_generating: 'Generating ideas...',
+      ai_insert: 'Insert into Brief',
+      ai_close: 'Close',
+      ai_placeholder: 'Design ideas based on your synopsis will appear here...',
+      ai_error: 'Please fill in the "Synopsis" field to generate ideas.',
       fields: {
         name: "Author Name",
         genre: "Genre",

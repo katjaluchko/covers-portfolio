@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, Check, BookOpen, Layers, Mail, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
+import { Send, Check, Tablet, Book, Mail, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
 import { FormData } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -94,7 +94,7 @@ const Contact: React.FC<ContactProps> = ({ initialData }) => {
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          backgroundImage: 'url("https://media.discordapp.net/attachments/1448617451918069915/1448675155600474318/ab2783e530089bff.jpg?ex=693c1f60&is=693acde0&hm=87cd5315d4638854e1bd48c4fe4b981a3f8dcfaca0ef7fa949b7e56704c2c732&=&format=webp&width=1206&height=800")',
+          backgroundImage: 'url("https://images.unsplash.com/photo-1519681393798-3828fb4090bb?q=80&w=1470&auto=format&fit=crop")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -127,7 +127,7 @@ const Contact: React.FC<ContactProps> = ({ initialData }) => {
                 className={`cursor-pointer p-6 border rounded-sm transition-all duration-300 flex items-center gap-4 ${formData.packageType === 'ebook' ? 'bg-purple-500/10 border-purple-500' : 'bg-dark-800/80 border-white/10 hover:border-white/30'}`}
               >
                 <div className={`p-3 rounded-full ${formData.packageType === 'ebook' ? 'bg-purple-500 text-black' : 'bg-dark-700 text-gray-400'}`}>
-                  <BookOpen className="w-6 h-6" />
+                  <Tablet className="w-6 h-6" />
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-lg">E-Book</h4>
@@ -142,7 +142,7 @@ const Contact: React.FC<ContactProps> = ({ initialData }) => {
                 className={`cursor-pointer p-6 border rounded-sm transition-all duration-300 flex items-center gap-4 ${formData.packageType === 'print' ? 'bg-purple-500/10 border-purple-500' : 'bg-dark-800/80 border-white/10 hover:border-white/30'}`}
               >
                 <div className={`p-3 rounded-full ${formData.packageType === 'print' ? 'bg-purple-500 text-black' : 'bg-dark-700 text-gray-400'}`}>
-                  <Layers className="w-6 h-6" />
+                  <Book className="w-6 h-6" />
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-lg">Hardback / Paperback</h4>

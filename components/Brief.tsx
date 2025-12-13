@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Copy, Check, ArrowRight, FileText, Edit3, User, Book, Type, AlignLeft, Palette } from 'lucide-react';
+import { ArrowLeft, Copy, Check, ArrowRight, FileText, Edit3, User, Book, Type as TypeIcon, AlignLeft, Palette, Sparkles, X, Loader2, MousePointerClick } from 'lucide-react';
 import { FormData } from '../types';
 import { useLanguage } from '../context/LanguageContext';
+import { GoogleGenAI, Type } from '@google/genai';
 
 interface BriefProps {
   onBack: () => void;
   onGoToContact: (data: Partial<FormData>) => void;
+}
+
+interface AiConcept {
+  title: string;
+  description: string;
 }
 
 const Brief: React.FC<BriefProps> = ({ onBack, onGoToContact }) => {
@@ -19,6 +25,10 @@ const Brief: React.FC<BriefProps> = ({ onBack, onGoToContact }) => {
   });
   
   const [copied, setCopied] = useState(false);
+  const [showAiModal, setShowAiModal] = useState(false);
+  const [isLoadingAi, setIsLoadingAi] = useState(false);
+  const [aiConcepts, setAiConcepts] = useState<AiConcept[]>([]);
+  const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -53,6 +63,88 @@ ${formData.preferences}`;
   const handleSubmit = () => {
     // Pass the structured data directly to the contact form
     onGoToContact(formData);
+  };
+
+  const handleGenerateAi = async () => {
+    if (!formData.synopsis.trim()) {
+        alert(t.brief.ai_error);
+        return;
+    }
+
+    setIsLoadingAi(true);
+    setAiConcepts([]);
+    setSelectedIndices([]);
+    
+    try {
+        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+        
+        const prompt = language === 'uk' 
+            ? `Ти професійний дизайнер книжкових обкладинок. На основі наданого сюжету книги, згенеруй 3 унікальні концепції дизайну обкладинки.
+            Сюжет: ${formData.synopsis}`
+            : `You are a professional book cover designer. Based on the provided book synopsis, generate 3 unique book cover design concepts.
+            Synopsis: ${formData.synopsis}`;
+
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: prompt,
+            config: {
+                responseMimeType: "application/json",
+                responseSchema: {
+                    type: Type.OBJECT,
+                    properties: {
+                        concepts: {
+                            type: Type.ARRAY,
+                            items: {
+                                type: Type.OBJECT,
+                                properties: {
+                                    title: { type: Type.STRING, description: "Short title of the concept (e.g. 'Minimalist Symbolism')" },
+                                    description: { type: Type.STRING, description: "Detailed description of imagery, colors, and mood." }
+                                },
+                                required: ["title", "description"]
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        if (response.text) {
+            const parsed = JSON.parse(response.text);
+            if (parsed.concepts && Array.isArray(parsed.concepts)) {
+                setAiConcepts(parsed.concepts);
+                setShowAiModal(true);
+            }
+        }
+    } catch (error) {
+        console.error("AI Generation Error:", error);
+        alert("Error generating ideas. Please try again later.");
+    } finally {
+        setIsLoadingAi(false);
+    }
+  };
+
+  const toggleConceptSelection = (index: number) => {
+    setSelectedIndices(prev => 
+        prev.includes(index) 
+            ? prev.filter(i => i !== index) 
+            : [...prev, index]
+    );
+  };
+
+  const insertAiContent = () => {
+    const conceptsToInsert = selectedIndices.length > 0 
+        ? selectedIndices.map(i => aiConcepts[i]) 
+        : aiConcepts; // If nothing selected, insert all? Or maybe force selection. Let's insert all if none selected for ease.
+
+    const formattedText = conceptsToInsert.map((c, i) => {
+        return `КОНЦЕПТ ${i + 1}: ${c.title}\n${c.description}`;
+    }).join('\n\n---\n\n');
+
+    setFormData(prev => ({
+        ...prev,
+        preferences: prev.preferences ? prev.preferences + '\n\n' + formattedText : formattedText
+    }));
+    setShowAiModal(false);
   };
 
   // Example Data Constants
@@ -131,7 +223,7 @@ Page count: ~360.`
 
                         <div className="group">
                             <label className="flex items-center gap-2 text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">
-                                <Type className="w-3 h-3" />
+                                <TypeIcon className="w-3 h-3" />
                                 {t.brief.fields.genre}
                             </label>
                             <input 
@@ -228,7 +320,7 @@ Page count: ~360.`
 
                         <div className="group">
                             <label className="flex items-center gap-2 text-gray-500 text-xs font-bold uppercase tracking-widest mb-2 group-focus-within:text-purple-400 transition-colors">
-                                <Type className="w-3 h-3" />
+                                <TypeIcon className="w-3 h-3" />
                                 {t.brief.fields.genre}
                             </label>
                             <input 
@@ -273,12 +365,24 @@ Page count: ~360.`
                         ></textarea>
                     </div>
 
-                    {/* Design Preferences */}
+                    {/* Design Preferences with AI Button */}
                     <div className="group flex-grow flex flex-col">
-                        <label className="flex items-center gap-2 text-gray-500 text-xs font-bold uppercase tracking-widest mb-2 group-focus-within:text-purple-400 transition-colors">
-                            <Palette className="w-3 h-3" />
-                            {t.brief.fields.pref}
-                        </label>
+                        <div className="flex justify-between items-center mb-2">
+                             <label className="flex items-center gap-2 text-gray-500 text-xs font-bold uppercase tracking-widest group-focus-within:text-purple-400 transition-colors">
+                                <Palette className="w-3 h-3" />
+                                {t.brief.fields.pref}
+                            </label>
+
+                            <button
+                                onClick={handleGenerateAi}
+                                disabled={isLoadingAi}
+                                className="flex items-center gap-1.5 px-2 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-sm text-[10px] uppercase font-bold tracking-wider transition-all shadow-[0_0_10px_rgba(168,85,247,0.3)] hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {isLoadingAi ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                                {isLoadingAi ? t.brief.ai_generating : t.brief.ai_btn}
+                            </button>
+                        </div>
+                       
                         <textarea
                             name="preferences"
                             value={formData.preferences}
@@ -301,6 +405,102 @@ Page count: ~360.`
                 </div>
             </div>
         </div>
+
+        {/* AI Modal */}
+        {showAiModal && (
+            <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+                <div className="bg-dark-800 border border-purple-500/30 rounded-sm shadow-2xl w-full max-w-4xl flex flex-col max-h-[90vh] relative">
+                    
+                    {/* Modal Header */}
+                    <div className="flex items-center justify-between p-6 border-b border-white/10">
+                        <div className="flex items-center gap-3">
+                            <Sparkles className="w-5 h-5 text-purple-400" />
+                            <h3 className="text-xl font-serif font-bold text-white">{t.brief.ai_modal_title}</h3>
+                        </div>
+                        <button 
+                            onClick={() => setShowAiModal(false)}
+                            className="text-gray-400 hover:text-white transition-colors"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+                    </div>
+
+                    {/* Modal Content - Structured Concepts */}
+                    <div className="p-6 overflow-y-auto custom-scrollbar bg-dark-900/50">
+                         {aiConcepts.length > 0 ? (
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {aiConcepts.map((concept, idx) => {
+                                    const isSelected = selectedIndices.includes(idx);
+                                    return (
+                                        <div 
+                                            key={idx}
+                                            onClick={() => toggleConceptSelection(idx)}
+                                            className={`
+                                                relative p-6 rounded-sm border cursor-pointer transition-all duration-300 group
+                                                ${isSelected 
+                                                    ? 'bg-purple-500/10 border-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.15)]' 
+                                                    : 'bg-dark-800 border-white/10 hover:border-purple-500/50 hover:bg-dark-800/80'}
+                                            `}
+                                        >
+                                            <div className="flex justify-between items-start mb-4">
+                                                <h4 className={`font-serif font-bold text-lg ${isSelected ? 'text-purple-300' : 'text-white'}`}>
+                                                    {concept.title}
+                                                </h4>
+                                                <div className={`
+                                                    w-5 h-5 rounded-sm border flex items-center justify-center transition-colors
+                                                    ${isSelected ? 'bg-purple-500 border-purple-500 text-black' : 'border-gray-600 bg-transparent group-hover:border-gray-400'}
+                                                `}>
+                                                    {isSelected && <Check className="w-3 h-3" />}
+                                                </div>
+                                            </div>
+                                            <p className="text-sm text-gray-400 leading-relaxed">
+                                                {concept.description}
+                                            </p>
+                                            
+                                            {!isSelected && (
+                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                                    <span className="bg-black/80 px-3 py-1 text-xs text-white rounded-full flex items-center gap-1">
+                                                        <MousePointerClick className="w-3 h-3" /> Select
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                         ) : (
+                             <div className="text-center text-gray-400 py-12">
+                                 {t.brief.ai_placeholder}
+                             </div>
+                         )}
+                    </div>
+
+                    {/* Modal Footer */}
+                    <div className="p-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 bg-dark-800">
+                        <p className="text-gray-400 text-sm hidden md:block">
+                            {selectedIndices.length > 0 
+                                ? `${selectedIndices.length} concept(s) selected` 
+                                : "Select concepts to insert"}
+                        </p>
+                        <div className="flex gap-4 w-full md:w-auto">
+                            <button 
+                                onClick={() => setShowAiModal(false)}
+                                className="flex-1 md:flex-none px-6 py-3 border border-white/10 hover:bg-white/5 text-gray-300 font-bold uppercase text-xs tracking-widest rounded-sm transition-colors"
+                            >
+                                {t.brief.ai_close}
+                            </button>
+                            <button 
+                                onClick={insertAiContent}
+                                className="flex-1 md:flex-none px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold uppercase text-xs tracking-widest rounded-sm transition-colors shadow-lg shadow-purple-900/20 flex items-center justify-center gap-2"
+                            >
+                                <Check className="w-4 h-4" />
+                                {selectedIndices.length > 0 ? t.brief.ai_insert : "Insert All"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )}
 
       </div>
       

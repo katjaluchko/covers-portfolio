@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
              aria-label="Upwork"
           >
             <img 
-              src="https://media.discordapp.net/attachments/1448617451918069915/1448768547974025416/pngwing.com_7.png?ex=693c765a&is=693b24da&hm=0f4ad6cc5c3c2a6bb8c2c00956206a748f648ac31097c8aa7c1e3318f74d87c2&=&format=webp&quality=lossless&width=1100&height=930" 
+              src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/upwork.svg"
               alt="Upwork"
               className="w-6 h-6 object-contain opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:brightness-0 group-hover:invert transition-all duration-300"
             />
@@ -44,12 +44,12 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="text-center">
-          {/* Logo Image */}
-          <a href="#" className="inline-block mb-4 opacity-50 hover:opacity-100 transition-opacity duration-300">
+          {/* Logo (Replaced Text with Image) */}
+          <a href="#" className="inline-block mb-4 opacity-50 hover:opacity-100 transition-opacity duration-300 no-underline">
             <img 
-                src="https://media.discordapp.net/attachments/1448617451918069915/1448625723928613027/c5ff6cff3e9568a4.png?ex=693d42d6&is=693bf156&hm=05a970834c3944c914bf0b4d19a96258238cc7996f9dd1ac7a6428b0de90a0b8&=&format=webp&quality=lossless&width=1110&height=920" 
-                alt="Logo" 
-                className="h-12 w-auto object-contain"
+              src="https://media.discordapp.net/attachments/1448617451918069915/1448625723928613027/c5ff6cff3e9568a4.png?ex=693e9456&is=693d42d6&hm=bf30802c2b4a111c1fb02a5b3a95f714c7d267fd938bccee13cbc782d25974b1&=&format=webp&quality=lossless&width=1110&height=920" 
+              alt="KateryDess Logo" 
+              className="h-16 w-auto object-contain"
             />
           </a>
           <p className="text-gray-500 text-sm">© {new Date().getFullYear()} {t.footer.rights}</p>

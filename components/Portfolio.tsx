@@ -15,9 +15,7 @@ const Portfolio: React.FC = () => {
         genre: language === 'uk' ? "Фентезі" : "Fantasy", 
         imageUrl: "https://framerusercontent.com/images/a9qCN0VoFeM9FsgQRMxIjMIR8jE.jpg?scale-down-to=1024&width=818&height=1209",
         gallery: [
-            "https://media.discordapp.net/attachments/1448617451918069915/1448742140795420794/1.jpg?ex=693c5dc2&is=693b0c42&hm=7a354201f384a6ecf3f642fe79e788f81fbfe6acfe25bb96e68d07130bde3a4c&=&format=webp&width=943&height=800",
-            "https://media.discordapp.net/attachments/1448617451918069915/1448742141164650730/Free_Book_Mockup_2.jpg?ex=693c5dc2&is=693b0c42&hm=d8356f9e97797d00730579c0c8635d8c90e16cd2a92503c90e456d68da4ff0c6&=&format=webp&width=1066&height=800",
-            "https://media.discordapp.net/attachments/1448617451918069915/1448742141479096431/620f04763bb771c1.jpg?ex=693c5dc2&is=693b0c42&hm=d93520ae87c3bca4242eb809d58c239ff299a37be9d3cbd70e2237b8d703af33&=&format=webp&width=746&height=800"
+            "https://framerusercontent.com/images/a9qCN0VoFeM9FsgQRMxIjMIR8jE.jpg?scale-down-to=1024&width=818&height=1209"
         ]
     },
     { 
@@ -27,9 +25,7 @@ const Portfolio: React.FC = () => {
         genre: language === 'uk' ? "Нуарний трилер" : "Noir Thriller", 
         imageUrl: "https://framerusercontent.com/images/RAmtHkw2gRbOze3nG6ZqieRBNc4.jpg?scale-down-to=1024&width=1859&height=2691",
         gallery: [
-            "https://media.discordapp.net/attachments/1448617451918069915/1448743326307188888/ffd8ddc1821b51e8.jpg?ex=693c5edd&is=693b0d5d&hm=553f817429b2e227a1b5626851037941ab64bbd1765b264770cbb8a739633ac5&=&format=webp&width=1110&height=804",
-            "https://media.discordapp.net/attachments/1448617451918069915/1448742936350167184/b1bcb9be954c361b.jpg?ex=693c5e80&is=693b0d00&hm=16809df439f7e6b51a9799986f6b1d137af1d40797de2243b49a4aee981552ee&=&format=webp&width=1066&height=800",
-            "https://media.discordapp.net/attachments/1448617451918069915/1448742937146953909/83dbcd6dd62a9189.jpg?ex=693c5e80&is=693b0d00&hm=e139ed2bd41f13112386f9cbc318fbd68e58881d5f60eaddafa2bb94cee89dbb&=&format=webp&width=1066&height=800"
+             "https://framerusercontent.com/images/RAmtHkw2gRbOze3nG6ZqieRBNc4.jpg?scale-down-to=1024&width=1859&height=2691"
         ]
     },
     { 
@@ -46,9 +42,7 @@ const Portfolio: React.FC = () => {
         genre: language === 'uk' ? "Епічне Фентезі" : "Epic Fantasy", 
         imageUrl: "https://framerusercontent.com/images/8qDEZ8a62Q4WpmpqVAU77OoMsCg.jpg?scale-down-to=1024&width=1330&height=1960",
         gallery: [
-            "https://media.discordapp.net/attachments/1448617451918069915/1448756072843317470/2.jpg?ex=693c6abc&is=693b193c&hm=5f3dac756feda5d331fd7f81ac10c97148034b1bccc17d0e0bfab5f542002735&=&format=webp&width=1194&height=800",
-            "https://media.discordapp.net/attachments/1448617451918069915/1448756071807193321/13ebc344b828d2ad.jpg?ex=693c6abc&is=693b193c&hm=fc8864b0255d5c6accf4ea2d3383bddce90a9623c53c4c798817e4c1012a95e2&=&format=webp&width=1090&height=800",
-            "https://media.discordapp.net/attachments/1448617451918069915/1448756123816562738/d0784eaf61596561.jpg?ex=693c6ac8&is=693b1948&hm=5739348f3209b4565347b2b9c570fa2d0ec270b2a5ece37095a9d7e669cfbbd8&=&format=webp&width=1193&height=800"
+             "https://framerusercontent.com/images/8qDEZ8a62Q4WpmpqVAU77OoMsCg.jpg?scale-down-to=1024&width=1330&height=1960"
         ]
     },
     { 
@@ -70,39 +64,37 @@ const Portfolio: React.FC = () => {
         title: "День, коли втрачено розум", 
         author: "Ксав'єр Кастільо", 
         genre: language === 'uk' ? "Триллер" : "Thriller", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734370758809/2025-12-04_180848.png?ex=693d3b65&is=693be9e5&hm=8425445da2fcf1b9ba98615a9e251c6c46de27a07358aa09700d92f29c3ed2cd&=&format=webp&quality=lossless&width=529&height=800"
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734370758809/2025-12-04_180848.png?ex=693e8ce5&is=693d3b65&hm=9a3391aeada1966bcf7987f972b9bd2f1028e6ad1a670b4f4d3127d18aa756ef&=&format=webp&quality=lossless&width=529&height=800"
     },
     { 
         id: 8, 
         title: "Court of Embers", 
         author: "Lauren Lee King", 
         genre: language === 'uk' ? "Роментезі" : "Romantasy", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734811287552/2025-12-04_182927.png?ex=693d3b65&is=693be9e5&hm=08b2b6e82e9d8add22f299aefa65ab2b6d416905eafedf5cdf76f28efd75ad69&=&format=webp&quality=lossless&width=504&height=800"
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734811287552/2025-12-04_182927.png?ex=693e8ce5&is=693d3b65&hm=eec6e78fb10b3f9f3b37b75fc11eda649591d46f97629eb0c85a4b87c573b55b&=&format=webp&quality=lossless&width=504&height=800"
     },
     { 
         id: 9, 
         title: "Я стежу за тобою", 
         author: "Тереза Дрісколл", 
         genre: language === 'uk' ? "Триллер" : "Thriller", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617735230849075/2025-12-04_180737.png?ex=693d3b66&is=693be9e6&hm=65820405ccf740b9a3c071a28d6c07b0025e9a88f56c4d45e4f4455e59256a9b&=&format=webp&quality=lossless&width=525&height=800"
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617735230849075/2025-12-04_180737.png?ex=693e8ce6&is=693d3b66&hm=61a71dddef4ef3c6004c71e92c43b61a0f609ac3a6439ff91a79abc1e8e05d9a&=&format=webp&quality=lossless&width=525&height=800"
     },
     { 
         id: 10, 
         title: "Острів ГУР", 
         author: "Максим Бутченко", 
         genre: "Нон-фікшн", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448618123518541824/2025-12-04_181326.png?ex=693d3bc2&is=693bea42&hm=2328fcbc4b46440d843ef711f699bbef19d91abff890b27f94cb31e2a241a7e2&=&format=webp&quality=lossless&width=278&height=438"
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448618123518541824/2025-12-04_181326.png?ex=693e8d42&is=693d3bc2&hm=7b73e062ef0ccd32ca33902e95effef60bb1d834c28608937f5b85159351e688&=&format=webp&quality=lossless&width=589&height=930"
     },
     { 
         id: 11, 
         title: "Unwritten", 
         author: "Adger. R. Matthews 2", 
         genre: language === 'uk' ? "Грімдарк Фентезі" : "Grimdark Fantasy", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693d3cb0&is=693beb30&hm=1f124ea964a797225ade2c48f53ee15a237fc4331b24b84dd4eb7636eb1bcdda&=&format=webp&width=615&height=930",
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693e8e30&is=693d3cb0&hm=858a23f66e9d1ab1a13dd24d538ad351b57ff18d93a6f6a5a6b9b3f1153bf70d&=&format=webp&width=615&height=930",
         gallery: [
-            "https://media.discordapp.net/attachments/1448617451918069915/1448748005879709879/-1.jpg?ex=693c6339&is=693b11b9&hm=ace006089c2d5b3f383e133f6ec1391b8760d8ebecddafd14f3fc9238671c387&=&format=webp&width=1110&height=866",
-            "https://media.discordapp.net/attachments/1448617451918069915/1448747998501933066/512.jpg?ex=693c6337&is=693b11b7&hm=f26ebb4628e21108432a89d1077164dc116a90e94b809c8f677673a3ff9714de&=&format=webp&width=1416&height=800",
-            "https://media.discordapp.net/attachments/1448617451918069915/1448747999617355950/14214.jpg?ex=693c6337&is=693b11b7&hm=ec32b99a2cd94a07bf927ebf422c7a412334b18567149cb519364429dc32f8b1&=&format=webp&width=1416&height=800"
+            "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693e8e30&is=693d3cb0&hm=858a23f66e9d1ab1a13dd24d538ad351b57ff18d93a6f6a5a6b9b3f1153bf70d&=&format=webp&width=615&height=930"
         ]
     },
     { 
@@ -110,7 +102,7 @@ const Portfolio: React.FC = () => {
         title: "Waves of want", 
         author: "Faye Yu", 
         genre: language === 'uk' ? "Темний роман" : "Dark Romance", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448778020482453554/52532.jpg?ex=693c7f2d&is=693b2dad&hm=b5066f08fe119460a2f007c42228b12d67926fb8170872986f02d40dbeb6e7ad&=&format=webp&width=616&height=930"
+        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448778020482453554/52532.jpg?ex=693e796d&is=693d27ed&hm=a25b0486c96f0aabe9cdc403c1a8763366ce36a7658a512f206f4bdb9eb63088&=&format=webp&width=616&height=930"
     },
   ];
 

@@ -13,7 +13,7 @@ const Testimonials: React.FC = () => {
         text: language === 'uk' 
             ? "Виняткова майстерність — втілення моєї візії. Катерина створила обкладинку для мого епічного фентезі-роману «UNWRITTEN: The Awakening» і просто вразила мене. З самого першого концепту вона зрозуміла похмурий тон і космічний масштаб, яких я прагнув. Кінцева обкладинка просто захоплює дух. Катерина - професіонал, комунікабельна і справді талановита."
             : "Exceptional craftsmanship — the embodiment of my vision. Kateryna created the cover for my epic fantasy novel 'UNWRITTEN: The Awakening' and just blew me away. From the very first concept, she understood the dark tone and cosmic scale I was aiming for. The final cover is simply breathtaking. Kateryna is a professional, communicative, and truly talented.",
-        coverImage: "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693beb30&is=693a99b0&hm=561b393d07148ecb5e3b4265211ff0e61c3710d03c1fb85d077d04cf53a7a13b&=&format=webp&width=615&height=930"
+        coverImage: "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693e8e30&is=693d3cb0&hm=858a23f66e9d1ab1a13dd24d538ad351b57ff18d93a6f6a5a6b9b3f1153bf70d&=&format=webp&width=615&height=930"
     },
     {
         id: 2,
