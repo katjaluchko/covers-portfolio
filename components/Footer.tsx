@@ -44,12 +44,12 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="text-center">
-          {/* Logo (Replaced Text with Image) */}
+          {/* Logo - Updated to new image and adjusted size (h-24) */}
           <a href="#" className="inline-block mb-4 opacity-50 hover:opacity-100 transition-opacity duration-300 no-underline">
             <img 
-              src="https://drive.google.com/uc?export=view&id=1NiWc-UeOy7glBX-Lm1yYjieVqeUmJWLk" 
+              src="https://i.ibb.co/BK6bg5xv/1000023570.png" 
               alt="KateryDess Logo" 
-              className="h-20 w-auto object-contain"
+              className="h-24 w-auto object-contain"
             />
           </a>
           <p className="text-gray-500 text-sm">© {new Date().getFullYear()} {t.footer.rights}</p>

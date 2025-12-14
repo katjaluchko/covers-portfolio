@@ -62,37 +62,37 @@ const Portfolio: React.FC = () => {
         title: "День, коли втрачено розум", 
         author: "Ксав'єр Кастільо", 
         genre: language === 'uk' ? "Триллер" : "Thriller", 
-        imageUrl: "https://drive.google.com/uc?export=view&id=1fuJfF-d53VWG3SYVmiPOG74QVeHaVpcg"
+        imageUrl: "https://i.ibb.co/FkCH5CP9/1000023564.png"
     },
     { 
         id: 8, 
         title: "Court of Embers", 
         author: "Lauren Lee King", 
         genre: language === 'uk' ? "Роментезі" : "Romantasy", 
-        imageUrl: "https://drive.google.com/uc?export=view&id=1VvCkCLAp0CEHVZytbJQyHwolUQe2X2_f"
+        imageUrl: "https://i.ibb.co/LDJC6H62/1000023565.png"
     },
     { 
         id: 9, 
         title: "Я стежу за тобою", 
         author: "Тереза Дрісколл", 
         genre: language === 'uk' ? "Триллер" : "Thriller", 
-        imageUrl: "https://drive.google.com/uc?export=view&id=1rw0r-f0-h8feNQ-76JZhKS8JsAFI7x8n"
+        imageUrl: "https://i.ibb.co/k69BNhDB/1000023566.png"
     },
     { 
         id: 10, 
         title: "Острів ГУР", 
         author: "Максим Бутченко", 
         genre: "Нон-фікшн", 
-        imageUrl: "https://drive.google.com/uc?export=view&id=1aGjLvRUKsi_r66380VjBz92jq1-qmfFp"
+        imageUrl: "https://i.ibb.co/JLx1Xc1/1000023567.png"
     },
     { 
         id: 11, 
         title: "Unwritten", 
         author: "Adger. R. Matthews 2", 
         genre: language === 'uk' ? "Грімдарк Фентезі" : "Grimdark Fantasy", 
-        imageUrl: "https://drive.google.com/uc?export=view&id=1wLOgtH2yEnMyy74GYvYrIruy7H704UQS",
+        imageUrl: "https://i.ibb.co/dwSR8D7j/1000023568.jpg",
         gallery: [
-            "https://drive.google.com/uc?export=view&id=1wLOgtH2yEnMyy74GYvYrIruy7H704UQS"
+            "https://i.ibb.co/dwSR8D7j/1000023568.jpg"
         ]
     },
     { 
@@ -100,7 +100,7 @@ const Portfolio: React.FC = () => {
         title: "Waves of want", 
         author: "Faye Yu", 
         genre: language === 'uk' ? "Темний роман" : "Dark Romance", 
-        imageUrl: "https://drive.google.com/uc?export=view&id=1rUKp8_vQVakZYBpwA1y7RvXsYyp4kvH_"
+        imageUrl: "https://i.ibb.co/8LfB8T3R/1000023569.jpg"
     },
   ];
 

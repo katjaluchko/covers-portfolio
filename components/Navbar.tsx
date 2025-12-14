@@ -76,12 +76,12 @@ const Navbar: React.FC<NavbarProps> = ({ onGoHome, isHomePage }) => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         
         <div className="flex items-center gap-6">
-            {/* Logo - Replaced Text with Image */}
+            {/* Logo - Updated to new image and adjusted size (h-20) */}
             <a href="#" onClick={handleLogoClick} className="block cursor-pointer relative z-50 group no-underline">
               <img 
-                src="https://drive.google.com/uc?export=view&id=1NiWc-UeOy7glBX-Lm1yYjieVqeUmJWLk" 
+                src="https://i.ibb.co/BK6bg5xv/1000023570.png" 
                 alt="KateryDess Logo" 
-                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </a>
 
