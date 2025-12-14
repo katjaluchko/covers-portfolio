@@ -11,7 +11,8 @@ const Services: React.FC = () => {
       title: t.services.ebook.title,
       price: "€140",
       description: t.services.ebook.desc,
-      features: t.services.ebook.features
+      features: t.services.ebook.features,
+      note: null
     },
     {
       icon: <Book className="w-12 h-12 text-white" />,

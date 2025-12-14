@@ -109,15 +109,20 @@ ${formData.preferences}`;
         });
 
         if (response.text) {
-            const parsed = JSON.parse(response.text);
+            // Clean markdown formatting if present (e.g. ```json ... ```)
+            const cleanText = response.text.replace(/```json\n?|```/g, '').trim();
+            const parsed = JSON.parse(cleanText);
+            
             if (parsed.concepts && Array.isArray(parsed.concepts)) {
                 setAiConcepts(parsed.concepts);
                 setShowAiModal(true);
+            } else {
+                console.warn("Unexpected JSON structure:", parsed);
             }
         }
     } catch (error) {
         console.error("AI Generation Error:", error);
-        alert("Error generating ideas. Please try again later.");
+        alert("Error generating ideas. Please check API Key configuration or try again later.");
     } finally {
         setIsLoadingAi(false);
     }
@@ -134,7 +139,7 @@ ${formData.preferences}`;
   const insertAiContent = () => {
     const conceptsToInsert = selectedIndices.length > 0 
         ? selectedIndices.map(i => aiConcepts[i]) 
-        : aiConcepts; // If nothing selected, insert all? Or maybe force selection. Let's insert all if none selected for ease.
+        : aiConcepts;
 
     const formattedText = conceptsToInsert.map((c, i) => {
         return `КОНЦЕПТ ${i + 1}: ${c.title}\n${c.description}`;

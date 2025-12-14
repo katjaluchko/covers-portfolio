@@ -62,37 +62,37 @@ const Portfolio: React.FC = () => {
         title: "День, коли втрачено розум", 
         author: "Ксав'єр Кастільо", 
         genre: language === 'uk' ? "Триллер" : "Thriller", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734370758809/2025-12-04_180848.png?ex=693e8ce5&is=693d3b65&hm=9a3391aeada1966bcf7987f972b9bd2f1028e6ad1a670b4f4d3127d18aa756ef&=&format=webp&quality=lossless&width=529&height=800"
+        imageUrl: "https://drive.google.com/uc?export=view&id=1fuJfF-d53VWG3SYVmiPOG74QVeHaVpcg"
     },
     { 
         id: 8, 
         title: "Court of Embers", 
         author: "Lauren Lee King", 
         genre: language === 'uk' ? "Роментезі" : "Romantasy", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617734811287552/2025-12-04_182927.png?ex=693e8ce5&is=693d3b65&hm=eec6e78fb10b3f9f3b37b75fc11eda649591d46f97629eb0c85a4b87c573b55b&=&format=webp&quality=lossless&width=504&height=800"
+        imageUrl: "https://drive.google.com/uc?export=view&id=1VvCkCLAp0CEHVZytbJQyHwolUQe2X2_f"
     },
     { 
         id: 9, 
         title: "Я стежу за тобою", 
         author: "Тереза Дрісколл", 
         genre: language === 'uk' ? "Триллер" : "Thriller", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448617735230849075/2025-12-04_180737.png?ex=693e8ce6&is=693d3b66&hm=61a71dddef4ef3c6004c71e92c43b61a0f609ac3a6439ff91a79abc1e8e05d9a&=&format=webp&quality=lossless&width=525&height=800"
+        imageUrl: "https://drive.google.com/uc?export=view&id=1rw0r-f0-h8feNQ-76JZhKS8JsAFI7x8n"
     },
     { 
         id: 10, 
         title: "Острів ГУР", 
         author: "Максим Бутченко", 
         genre: "Нон-фікшн", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448618123518541824/2025-12-04_181326.png?ex=693e8d42&is=693d3bc2&hm=7b73e062ef0ccd32ca33902e95effef60bb1d834c28608937f5b85159351e688&=&format=webp&quality=lossless&width=589&height=930"
+        imageUrl: "https://drive.google.com/uc?export=view&id=1aGjLvRUKsi_r66380VjBz92jq1-qmfFp"
     },
     { 
         id: 11, 
         title: "Unwritten", 
         author: "Adger. R. Matthews 2", 
         genre: language === 'uk' ? "Грімдарк Фентезі" : "Grimdark Fantasy", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693e8e30&is=693d3cb0&hm=858a23f66e9d1ab1a13dd24d538ad351b57ff18d93a6f6a5a6b9b3f1153bf70d&=&format=webp&width=615&height=930",
+        imageUrl: "https://drive.google.com/uc?export=view&id=1wLOgtH2yEnMyy74GYvYrIruy7H704UQS",
         gallery: [
-            "https://media.discordapp.net/attachments/1448617451918069915/1448619122706354371/front.jpg?ex=693e8e30&is=693d3cb0&hm=858a23f66e9d1ab1a13dd24d538ad351b57ff18d93a6f6a5a6b9b3f1153bf70d&=&format=webp&width=615&height=930"
+            "https://drive.google.com/uc?export=view&id=1wLOgtH2yEnMyy74GYvYrIruy7H704UQS"
         ]
     },
     { 
@@ -100,7 +100,7 @@ const Portfolio: React.FC = () => {
         title: "Waves of want", 
         author: "Faye Yu", 
         genre: language === 'uk' ? "Темний роман" : "Dark Romance", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1448778020482453554/52532.jpg?ex=693e796d&is=693d27ed&hm=a25b0486c96f0aabe9cdc403c1a8763366ce36a7658a512f206f4bdb9eb63088&=&format=webp&width=616&height=930"
+        imageUrl: "https://drive.google.com/uc?export=view&id=1rUKp8_vQVakZYBpwA1y7RvXsYyp4kvH_"
     },
   ];
 

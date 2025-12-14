@@ -79,9 +79,9 @@ const Navbar: React.FC<NavbarProps> = ({ onGoHome, isHomePage }) => {
             {/* Logo - Replaced Text with Image */}
             <a href="#" onClick={handleLogoClick} className="block cursor-pointer relative z-50 group no-underline">
               <img 
-                src="https://media.discordapp.net/attachments/1448617451918069915/1448625723928613027/c5ff6cff3e9568a4.png?ex=693e9456&is=693d42d6&hm=bf30802c2b4a111c1fb02a5b3a95f714c7d267fd938bccee13cbc782d25974b1&=&format=webp&quality=lossless&width=1110&height=920" 
+                src="https://drive.google.com/uc?export=view&id=1NiWc-UeOy7glBX-Lm1yYjieVqeUmJWLk" 
                 alt="KateryDess Logo" 
-                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </a>
 
