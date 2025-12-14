@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Copy, Check, ArrowRight, FileText, Edit3, User, Book, Type as TypeIcon, AlignLeft, Palette, Sparkles, X, Loader2, MousePointerClick } from 'lucide-react';
+import { ArrowLeft, Copy, Check, ArrowRight, FileText, Edit3, User, Book, Type as TypeIcon, AlignLeft, Palette, Sparkles, X, Loader2, MousePointerClick, BrainCircuit } from 'lucide-react';
 import { FormData } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { GoogleGenAI, Type } from '@google/genai';
@@ -78,16 +78,35 @@ ${formData.preferences}`;
     try {
         const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
         
-        const prompt = language === 'uk' 
-            ? `Ти професійний дизайнер книжкових обкладинок. На основі наданого сюжету книги, згенеруй 3 унікальні концепції дизайну обкладинки.
-            Сюжет: ${formData.synopsis}`
-            : `You are a professional book cover designer. Based on the provided book synopsis, generate 3 unique book cover design concepts.
-            Synopsis: ${formData.synopsis}`;
+        const isUk = language === 'uk';
+
+        const systemInstruction = isUk 
+            ? "Ти — професійний арт-директор і дизайнер книжкових обкладинок. Твоє завдання — допомогти автору знайти ідеальну візуальну концепцію для його книги."
+            : "You are a professional art director and book cover designer. Your task is to help the author find the perfect visual concept for their book.";
+
+        const userPrompt = isUk 
+            ? `Проаналізуй цей синопсис і запропонуй 3 (три) унікальні та детальні концепції дизайну обкладинки.
+            
+            Синопсис книги:
+            "${formData.synopsis}"
+            
+            Для кожної концепції надай:
+            1. Креативну назву концепції.
+            2. Детальний опис: композиція, ключові елементи, кольорова палітра, настрій.`
+            : `Analyze this synopsis and propose 3 (three) unique and detailed book cover design concepts.
+            
+            Book Synopsis:
+            "${formData.synopsis}"
+            
+            For each concept provide:
+            1. A creative title for the concept.
+            2. Detailed description: composition, key elements, color palette, mood.`;
 
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
-            contents: prompt,
+            contents: userPrompt,
             config: {
+                systemInstruction: systemInstruction,
                 responseMimeType: "application/json",
                 responseSchema: {
                     type: Type.OBJECT,
@@ -97,32 +116,36 @@ ${formData.preferences}`;
                             items: {
                                 type: Type.OBJECT,
                                 properties: {
-                                    title: { type: Type.STRING, description: "Short title of the concept (e.g. 'Minimalist Symbolism')" },
-                                    description: { type: Type.STRING, description: "Detailed description of imagery, colors, and mood." }
+                                    title: { type: Type.STRING },
+                                    description: { type: Type.STRING }
                                 },
                                 required: ["title", "description"]
                             }
                         }
-                    }
+                    },
+                    required: ["concepts"]
                 }
             }
         });
 
-        if (response.text) {
-            // Clean markdown formatting if present (e.g. ```json ... ```)
-            const cleanText = response.text.replace(/```json\n?|```/g, '').trim();
+        // Use property getter as per guidelines
+        const textOutput = response.text;
+
+        if (textOutput) {
+            const cleanText = textOutput.replace(/```json\n?|```/g, '').trim();
             const parsed = JSON.parse(cleanText);
             
             if (parsed.concepts && Array.isArray(parsed.concepts)) {
                 setAiConcepts(parsed.concepts);
                 setShowAiModal(true);
             } else {
-                console.warn("Unexpected JSON structure:", parsed);
+                console.warn("AI Response structure unexpected:", parsed);
+                alert("AI generated an unexpected format. Please try again.");
             }
         }
     } catch (error) {
         console.error("AI Generation Error:", error);
-        alert("Error generating ideas. Please check API Key configuration or try again later.");
+        alert("Sorry, the AI Assistant is currently unavailable. Please check your connection or try again later.");
     } finally {
         setIsLoadingAi(false);
     }
@@ -142,7 +165,7 @@ ${formData.preferences}`;
         : aiConcepts;
 
     const formattedText = conceptsToInsert.map((c, i) => {
-        return `КОНЦЕПТ ${i + 1}: ${c.title}\n${c.description}`;
+        return `${c.title.toUpperCase()}\n${c.description}`;
     }).join('\n\n---\n\n');
 
     setFormData(prev => ({
@@ -202,7 +225,7 @@ Page count: ~360.`
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             
-            {/* Left Column: Example (Visible on mobile now, order-last on mobile) */}
+            {/* Left Column: Example */}
             <div className="flex order-last lg:order-first bg-dark-800 border border-purple-500/20 rounded-sm p-6 md:p-8 flex-col h-full shadow-[0_0_50px_rgba(168,85,247,0.05)] relative overflow-hidden">
                 <div className="flex items-center gap-3 mb-6 border-b border-white/10 pb-4 relative z-10">
                     <FileText className="w-5 h-5 text-purple-400" />
@@ -381,9 +404,9 @@ Page count: ~360.`
                             <button
                                 onClick={handleGenerateAi}
                                 disabled={isLoadingAi}
-                                className="flex items-center gap-1.5 px-2 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-sm text-[10px] uppercase font-bold tracking-wider transition-all shadow-[0_0_10px_rgba(168,85,247,0.3)] hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-full text-[10px] uppercase font-bold tracking-wider transition-all shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] disabled:opacity-50 disabled:cursor-not-allowed border border-white/10 group/btn"
                             >
-                                {isLoadingAi ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                                {isLoadingAi ? <Loader2 className="w-3 h-3 animate-spin" /> : <BrainCircuit className="w-3.5 h-3.5 group-hover/btn:scale-110 transition-transform" />}
                                 {isLoadingAi ? t.brief.ai_generating : t.brief.ai_btn}
                             </button>
                         </div>
@@ -417,7 +440,7 @@ Page count: ~360.`
                 <div className="bg-dark-800 border border-purple-500/30 rounded-sm shadow-2xl w-full max-w-4xl flex flex-col max-h-[90vh] relative">
                     
                     {/* Modal Header */}
-                    <div className="flex items-center justify-between p-6 border-b border-white/10">
+                    <div className="flex items-center justify-between p-6 border-b border-white/10 bg-gradient-to-r from-dark-800 to-purple-900/20">
                         <div className="flex items-center gap-3">
                             <Sparkles className="w-5 h-5 text-purple-400" />
                             <h3 className="text-xl font-serif font-bold text-white">{t.brief.ai_modal_title}</h3>
@@ -474,8 +497,9 @@ Page count: ~360.`
                                 })}
                             </div>
                          ) : (
-                             <div className="text-center text-gray-400 py-12">
-                                 {t.brief.ai_placeholder}
+                             <div className="text-center text-gray-400 py-12 flex flex-col items-center gap-3">
+                                 <Sparkles className="w-8 h-8 text-gray-600" />
+                                 <p>{t.brief.ai_placeholder}</p>
                              </div>
                          )}
                     </div>
