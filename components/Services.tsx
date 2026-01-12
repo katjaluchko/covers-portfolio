@@ -9,7 +9,7 @@ const Services: React.FC = () => {
     {
       icon: <Tablet className="w-12 h-12 text-white" />,
       title: t.services.ebook.title,
-      price: "€140",
+      price: "100€",
       description: t.services.ebook.desc,
       features: t.services.ebook.features,
       note: null
@@ -17,7 +17,7 @@ const Services: React.FC = () => {
     {
       icon: <Book className="w-12 h-12 text-white" />,
       title: t.services.print.title,
-      price: "€170",
+      price: "150€",
       description: t.services.print.desc,
       features: t.services.print.features,
       note: t.services.print.note

@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Copy, Check, ArrowRight, FileText, Edit3, User, Book, Type as TypeIcon, AlignLeft, Palette, Sparkles, X, Loader2, MousePointerClick, BrainCircuit, Lightbulb } from 'lucide-react';
+import { ArrowLeft, Copy, Check, ArrowRight, FileText, Edit3, User, Book, Type as TypeIcon, AlignLeft, Palette, X } from 'lucide-react';
 import { FormData } from '../types';
 import { useLanguage } from '../context/LanguageContext';
-import { GoogleGenAI, Type } from '@google/genai';
 
 interface BriefProps {
   onBack: () => void;
   onGoToContact: (data: Partial<FormData>) => void;
-}
-
-interface AiConcept {
-  title: string;
-  description: string;
 }
 
 const Brief: React.FC<BriefProps> = ({ onBack, onGoToContact }) => {
@@ -25,10 +19,6 @@ const Brief: React.FC<BriefProps> = ({ onBack, onGoToContact }) => {
   });
   
   const [copied, setCopied] = useState(false);
-  const [showAiModal, setShowAiModal] = useState(false);
-  const [isLoadingAi, setIsLoadingAi] = useState(false);
-  const [aiConcepts, setAiConcepts] = useState<AiConcept[]>([]);
-  const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -63,124 +53,6 @@ ${formData.preferences}`;
     onGoToContact(formData);
   };
 
-  // --- AI Logic Start ---
-  const handleGenerateAi = async () => {
-    if (!formData.synopsis.trim()) {
-        alert(language === 'uk' ? 'Будь ласка, заповніть поле "Анотація", щоб AI міг згенерувати ідеї.' : 'Please fill in the "Synopsis" field so AI can generate ideas.');
-        return;
-    }
-
-    setIsLoadingAi(true);
-    setAiConcepts([]);
-    setSelectedIndices([]);
-    
-    try {
-        // Initialize Gemini Client
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        
-        const isUk = language === 'uk';
-
-        // Strict System Instruction
-        const systemInstruction = isUk 
-            ? "Ти — досвідчений арт-директор і дизайнер обкладинок. Твоє завдання — проаналізувати сюжет книги та запропонувати 3 візуальні концепції обкладинки. Кожна концепція має бути унікальною, атмосферною та відповідати жанру."
-            : "You are an experienced art director and book cover designer. Your task is to analyze the book synopsis and propose 3 visual cover concepts. Each concept must be unique, atmospheric, and genre-appropriate.";
-
-        // Structured Prompt
-        const userPrompt = isUk 
-            ? `Створи 3 концепції дизайну обкладинки для цього синопсису:
-            "${formData.synopsis}"
-            
-            Для кожної концепції надай:
-            1. Лаконічну, креативну назву.
-            2. Детальний опис візуалу (композиція, кольори, настрій).`
-            : `Create 3 book cover design concepts for this synopsis:
-            "${formData.synopsis}"
-            
-            For each concept provide:
-            1. A concise, creative title.
-            2. Detailed visual description (composition, colors, mood).`;
-
-        // API Call with Schema
-        const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: userPrompt,
-            config: {
-                systemInstruction: systemInstruction,
-                responseMimeType: "application/json",
-                responseSchema: {
-                    type: Type.OBJECT,
-                    properties: {
-                        concepts: {
-                            type: Type.ARRAY,
-                            items: {
-                                type: Type.OBJECT,
-                                properties: {
-                                    title: { type: Type.STRING },
-                                    description: { type: Type.STRING }
-                                },
-                                required: ["title", "description"]
-                            }
-                        }
-                    },
-                    required: ["concepts"]
-                }
-            }
-        });
-
-        const textOutput = response.text;
-
-        if (textOutput) {
-            // Clean Markdown if present
-            const cleanText = textOutput.replace(/```json\n?|```/g, '').trim();
-            const parsed = JSON.parse(cleanText);
-            
-            if (parsed.concepts && Array.isArray(parsed.concepts)) {
-                setAiConcepts(parsed.concepts);
-                setShowAiModal(true);
-            } else {
-                throw new Error("Invalid JSON structure received");
-            }
-        } else {
-             throw new Error("No text response received");
-        }
-
-    } catch (error) {
-        console.error("AI Generation Error:", error);
-        alert(isUk 
-            ? "Виникла помилка при генерації. Перевірте підключення або спробуйте пізніше." 
-            : "An error occurred during generation. Check your connection or try again later.");
-    } finally {
-        setIsLoadingAi(false);
-    }
-  };
-  // --- AI Logic End ---
-
-  const toggleConceptSelection = (index: number) => {
-    setSelectedIndices(prev => 
-        prev.includes(index) 
-            ? prev.filter(i => i !== index) 
-            : [...prev, index]
-    );
-  };
-
-  const insertAiContent = () => {
-    const conceptsToInsert = selectedIndices.length > 0 
-        ? selectedIndices.map(i => aiConcepts[i]) 
-        : aiConcepts;
-
-    const formattedText = conceptsToInsert.map((c, i) => {
-        return `[КОНЦЕПТ ${i + 1}: ${c.title}]\n${c.description}`;
-    }).join('\n\n');
-
-    setFormData(prev => ({
-        ...prev,
-        preferences: prev.preferences 
-            ? prev.preferences + '\n\n' + '--- AI Suggestions ---\n' + formattedText 
-            : formattedText
-    }));
-    setShowAiModal(false);
-  };
-
   // Example Data
   const exampleData = language === 'uk' ? {
     name: "Лерайя Мілл",
@@ -195,8 +67,6 @@ ${formData.preferences}`;
     synopsis: `Maria arrives too late. Her brother, the first to step into the new world, has been split into seven types of legendary weapons—the very same ones that were once mere toys in Maria's hands on Earth. Now his soul, torn apart and barely alive, is scattered across the world.`,
     preferences: `I want one of the weapons to be in the center, the first one will be a scythe. In general, your vision of how it will look there should be in a dark and warm color scheme, with the title in the center and an interesting design.`
   };
-
-  const isUk = language === 'uk';
 
   return (
     <section className="min-h-screen bg-dark-900 pt-32 pb-24 px-6 relative">
@@ -295,18 +165,7 @@ ${formData.preferences}`;
                     </div>
 
                     <div className="group flex-grow flex flex-col relative">
-                        <div className="flex justify-between items-center mb-2">
-                             <label className="flex items-center gap-2 text-gray-500 text-xs font-bold uppercase tracking-widest group-focus-within:text-purple-400 transition-colors"><Palette className="w-3 h-3" />{t.brief.fields.pref}</label>
-                             
-                             <button
-                                onClick={handleGenerateAi}
-                                disabled={isLoadingAi}
-                                className="group/ai flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 disabled:from-gray-700 disabled:to-gray-700 text-white rounded-sm text-[10px] uppercase font-bold tracking-widest transition-all shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] border border-white/10"
-                            >
-                                {isLoadingAi ? <Loader2 className="w-3 h-3 animate-spin" /> : <BrainCircuit className="w-3.5 h-3.5 group-hover/ai:text-purple-200" />}
-                                {isLoadingAi ? t.brief.ai_generating : t.brief.ai_btn}
-                            </button>
-                        </div>
+                        <label className="flex items-center gap-2 text-gray-500 text-xs font-bold uppercase tracking-widest mb-2 group-focus-within:text-purple-400 transition-colors"><Palette className="w-3 h-3" />{t.brief.fields.pref}</label>
                         <textarea name="preferences" value={formData.preferences} onChange={handleChange} className="w-full flex-grow bg-dark-900/50 border border-white/10 focus:border-purple-500/50 text-white p-4 rounded-sm focus:outline-none transition-all resize-none font-sans text-sm leading-relaxed placeholder-gray-700 min-h-[150px]" placeholder={t.brief.placeholders.pref}></textarea>
                     </div>
                 </div>
@@ -319,93 +178,6 @@ ${formData.preferences}`;
                 </div>
             </div>
         </div>
-
-        {/* AI Modal */}
-        {showAiModal && (
-            <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-                <div className="bg-dark-800 border border-purple-500/30 rounded-sm shadow-2xl w-full max-w-5xl flex flex-col max-h-[90vh] relative overflow-hidden">
-                    
-                    <div className="flex items-center justify-between p-6 border-b border-white/10 bg-gradient-to-r from-dark-800 to-purple-900/20">
-                        <div className="flex items-center gap-3">
-                            <Sparkles className="w-5 h-5 text-purple-400" />
-                            <h3 className="text-xl font-serif font-bold text-white">{t.brief.ai_modal_title}</h3>
-                        </div>
-                        <button onClick={() => setShowAiModal(false)} className="text-gray-400 hover:text-white transition-colors">
-                            <X className="w-6 h-6" />
-                        </button>
-                    </div>
-
-                    <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar bg-dark-900/50">
-                         {aiConcepts.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {aiConcepts.map((concept, idx) => {
-                                    const isSelected = selectedIndices.includes(idx);
-                                    return (
-                                        <div 
-                                            key={idx}
-                                            onClick={() => toggleConceptSelection(idx)}
-                                            className={`
-                                                relative p-6 rounded-sm border cursor-pointer transition-all duration-300 group flex flex-col h-full
-                                                ${isSelected 
-                                                    ? 'bg-purple-500/10 border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.1)]' 
-                                                    : 'bg-dark-800 border-white/10 hover:border-purple-500/40 hover:bg-dark-800/80'}
-                                            `}
-                                        >
-                                            <div className="flex justify-between items-start mb-4">
-                                                <div className="flex items-center gap-2">
-                                                    <Lightbulb className={`w-4 h-4 ${isSelected ? 'text-purple-400' : 'text-gray-600'}`} />
-                                                    <h4 className={`font-serif font-bold text-base leading-tight ${isSelected ? 'text-purple-200' : 'text-white'}`}>
-                                                        {concept.title}
-                                                    </h4>
-                                                </div>
-                                                <div className={`
-                                                    w-5 h-5 rounded-sm border flex items-center justify-center transition-all duration-300 shrink-0
-                                                    ${isSelected ? 'bg-purple-500 border-purple-500 text-black scale-110' : 'border-gray-600 bg-transparent group-hover:border-gray-400'}
-                                                `}>
-                                                    {isSelected && <Check className="w-3 h-3" />}
-                                                </div>
-                                            </div>
-                                            <p className="text-sm text-gray-400 leading-relaxed flex-grow">
-                                                {concept.description}
-                                            </p>
-                                            
-                                            <div className={`mt-4 text-xs font-bold uppercase tracking-widest transition-colors ${isSelected ? 'text-purple-400' : 'text-gray-600 group-hover:text-gray-400'}`}>
-                                                {isSelected ? (isUk ? 'Обрано' : 'Selected') : (isUk ? 'Натисніть для вибору' : 'Click to Select')}
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                         ) : (
-                             <div className="text-center text-gray-400 py-12 flex flex-col items-center gap-4">
-                                 <Loader2 className="w-8 h-8 animate-spin text-purple-500" />
-                                 <p>{t.brief.ai_placeholder}</p>
-                             </div>
-                         )}
-                    </div>
-
-                    <div className="p-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 bg-dark-800">
-                        <p className="text-gray-400 text-sm hidden md:block">
-                            {selectedIndices.length > 0 
-                                ? (isUk ? `Обрано концепцій: ${selectedIndices.length}` : `${selectedIndices.length} concept(s) selected`)
-                                : (isUk ? "Оберіть концепції, які вам сподобались" : "Select concepts you like")}
-                        </p>
-                        <div className="flex gap-4 w-full md:w-auto">
-                            <button onClick={() => setShowAiModal(false)} className="flex-1 md:flex-none px-6 py-3 border border-white/10 hover:bg-white/5 text-gray-300 font-bold uppercase text-xs tracking-widest rounded-sm transition-colors">
-                                {t.brief.ai_close}
-                            </button>
-                            <button 
-                                onClick={insertAiContent}
-                                className="flex-1 md:flex-none px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold uppercase text-xs tracking-widest rounded-sm transition-colors shadow-lg shadow-purple-900/20 flex items-center justify-center gap-2"
-                            >
-                                <Check className="w-4 h-4" />
-                                {selectedIndices.length > 0 ? t.brief.ai_insert : (isUk ? "Вставити Все" : "Insert All")}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )}
 
       </div>
       <style>{`

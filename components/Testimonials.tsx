@@ -46,7 +46,7 @@ const Testimonials: React.FC = () => {
         text: language === 'uk'
             ? "Працювати з Катериною було дуже приємно, вона справді зробила чудову роботу! Вона швидко відповідала на повідомлення і професійно відповідала на всі питання. Обкладинка, яку вона створила, вийшла просто чудовою."
             : "Working with Kateryna was very pleasant, she really did a great job! She responded quickly to messages and answered all questions professionally. The cover she created turned out just great.",
-        coverImage: "https://framerusercontent.com/images/7F9urZnxqCiMy8O9ZQ2eiAxidU.jpg?scale-down-to=1024&width=2194&height=3292"
+        coverImage: "https://media.discordapp.net/attachments/1448617451918069915/1460228492309303486/The_Echokeepers_2_part_cover.jpg?ex=69662742&is=6964d5c2&hm=9bced0fb244e40f1368c664c9cf77bb394276b8629154c8a264b1846912090fa&=&format=webp&width=620&height=930"
     }
   ];
 
