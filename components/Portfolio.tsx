@@ -55,7 +55,14 @@ const Portfolio: React.FC = () => {
         title: "The Echokeepers", 
         author: "Gurmiz Publishing", 
         genre: language === 'uk' ? "Фентезі" : "Fantasy", 
-        imageUrl: "https://media.discordapp.net/attachments/1448617451918069915/1460228492309303486/The_Echokeepers_2_part_cover.jpg?ex=69662742&is=6964d5c2&hm=9bced0fb244e40f1368c664c9cf77bb394276b8629154c8a264b1846912090fa&=&format=webp&width=620&height=930"
+        imageUrl: "https://i.ibb.co/jvzMs4pG/The-Echokeepers-2-part-cover.jpg"
+    },
+    { 
+        id: 13, 
+        title: "The First Thread", 
+        author: "D.L.H. Rodrigues", 
+        genre: language === 'uk' ? "Фентезі" : "Fantasy", 
+        imageUrl: "https://i.ibb.co/vCFHf483/ebook.jpg"
     },
     { 
         id: 7, 
