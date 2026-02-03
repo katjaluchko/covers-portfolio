@@ -55,7 +55,7 @@ const Portfolio: React.FC = () => {
         title: "The Echokeepers", 
         author: "Gurmiz Publishing", 
         genre: language === 'uk' ? "Фентезі" : "Fantasy", 
-        imageUrl: "https://i.ibb.co/jvzMs4pG/The-Echokeepers-2-part-cover.jpg"
+        imageUrl: "https://i.ibb.co/nsfTfrdC/1000024030.jpg"
     },
     { 
         id: 13, 
